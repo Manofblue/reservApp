@@ -15,10 +15,29 @@ export class RegistroPage implements OnInit {
 
   persona = new FormGroup({
     rut : new FormControl('',[Validators.required,Validators.pattern("[0-9]{7,8}-[0-9kK]{1}")]),
-    nombre : new FormControl('',[Validators.minLength(3),Validators.required, Validators.pattern("[a-z]{3,5}")]),
-    fecha_nacimiento : new FormControl(),
-    genero : new FormControl()
+    nombre : new FormControl('',[Validators.required, Validators.pattern("[a-z]{3,5}")]),
+    //Si no existen las validaciones, debemos crear un metodo para crearla **TAREA
+    fecha_nacimiento : new FormControl('',[Validators.required]),
+    genero : new FormControl('',[Validators.required])
   });
+
+  //boton
+  public alertButtons = [
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      handler: () => {
+        console.log('Alert canceled');
+      },
+    },
+    {
+      text: 'OK',
+      role: 'confirm',
+      handler: () => {
+        console.log('Alert confirmed');
+      },
+    },
+  ];
 
   constructor(private router: Router) { }
 
@@ -28,10 +47,16 @@ export class RegistroPage implements OnInit {
   //Podemos crear metodos
 
   public registrar():void{
+    //Aqui pueden ir validaciones, DAO, conversiones,etc...
     console.log("Hola, estoy en una consola")
     console.log(this.persona.value)
     alert("Registrado!");
     this.router.navigate(['/login']);
+  }
+
+  //boton
+  setResult(ev:any) {
+    console.log(`Dismissed with role: ${ev.detail.role}`);
   }
   
 

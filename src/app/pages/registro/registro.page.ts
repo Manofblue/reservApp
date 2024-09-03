@@ -18,7 +18,9 @@ export class RegistroPage implements OnInit {
     nombre : new FormControl('',[Validators.required, Validators.pattern("[a-z]{3,5}")]),
     //Si no existen las validaciones, debemos crear un metodo para crearla **TAREA
     fecha_nacimiento : new FormControl('',[Validators.required]),
-    genero : new FormControl('',[Validators.required])
+    genero : new FormControl('',[Validators.required]),
+    tiene_equipo : new FormControl('no',[Validators.required]),
+    nombre_equipo : new FormControl('',[])
   });
 
   //boton

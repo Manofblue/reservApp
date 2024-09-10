@@ -28,14 +28,13 @@ export class UsuarioService {
     return this.usuarios;
   }
 
-  public updateUsuario(rut:string, nuevoUsuario:any):boolean{
-    for(let usu of this.usuarios){
-      if(usu.rut==rut){
-        usu = nuevoUsuario
-        return true;
-      }
+  public updateUsuario(rut:string, nuevoUsuario:any){
+    const indice = this.usuarios.findIndex(elemento => elemento.rut==rut);
+    if(indice==-1){
+      return false;
     }
-    return false;
+      this.usuarios[indice]= nuevoUsuario;
+    return true;
   }
 
   public deleteUsuario(rut:string):boolean{

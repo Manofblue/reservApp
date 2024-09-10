@@ -36,6 +36,29 @@ export class AdministrarPage implements OnInit {
       alert("Error!, no se pudo crear el usuario!");
     }
   }
+  buscar(rut_buscar:string){
+    this.persona.setValue(this.usuarioService.getUsuario(rut_buscar));
+    }
+  
+  modificar(){ 
+    //Aqui como tenemos problemas con los nulls, creamos una variable para asignarle un valor si o si(aunque esté vacio "")
+    var rut_buscar:string= this.persona.controls.rut.value || "";
+    if(this.usuarioService.updateUsuario( rut_buscar , this.persona.value)){
+      alert("USUARIO MODIFICADO CON EXITO!")
+    }else{
+      alert("Error!, No se ha modificado nada")
+    }
+  } 
+
+  eliminar(rut_eliminar:string){
+    //podemos usar console.log(rut_eliminar) para verificar si estamos rescatando bien el dato
+    if(this.usuarioService.deleteUsuario(rut_eliminar)){
+      alert("Usuario eliminado con éxito")
+    }else{
+      alert("Error!. Usuario no eliminado")
+    }
+  }
+
 
   
 
